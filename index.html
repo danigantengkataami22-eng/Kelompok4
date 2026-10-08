@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelompok4 </title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .spidey-glow-red {
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.7), inset 0 0 15px rgba(239, 68, 68, 0.5);
+        }
+        .spidey-glow-red:hover {
+            box-shadow: 0 0 45px rgba(239, 68, 68, 1), 0 0 80px rgba(59, 130, 246, 0.8), inset 0 0 25px rgba(239, 68, 68, 0.8);
+        }
+        .text-glow-blue {
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+        .text-glow-red {
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.9), 0 0 30px rgba(239, 68, 68, 0.7);
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+        
+        @keyframes spiderPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.9)); }
+        }
+        .spider-pulse {
+            animation: spiderPulse 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
+
+    <canvas id="webCanvas"></canvas>
+
+    <header class="content-layer w-full p-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-red-600 to-blue-600 flex items-center justify-center spidey-glow-red">
+                <i class="fa-solid fa-spider text-white text-xl"></i>
+            </div>
+            <span class="font-orbitron font-black text-xl tracking-wider text-red-500 text-glow-red">KELOMPOK<span class="text-blue-500 text-glow-blue">FOUR</span></span>
+        </div>
+        
+    </header>
+
+    <main class="content-layer flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-3xl w-full glass-card rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
+            
+            <div class="absolute -right-12 -bottom-12 opacity-10 text-red-500 pointer-events-none">
+                <i class="fa-solid fa-spider text-9xl"></i>
+            </div>
+            <div class="absolute -left-12 -top-12 opacity-10 text-blue-500 pointer-events-none">
+                <i class="fa-solid fa-spider text-9xl"></i>
+            </div>
+
+            
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-950/60 border border-red-500/40 text-red-400 text-xs font-bold uppercase tracking-widest mb-6">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                <span>SELAMAT DATANG DI PROJEK KELOMPOK 4</span>
+            </div>
+
+            <h1 class="font-orbitron text-4xl md:text-6xl font-black mb-6 tracking-tight">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-blue-500 text-glow-red">PERKEMBANGAN TEKNOLOGI</span>
+            </h1>
+
+            <p class="text-gray-300 text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+        
+            </p>
+
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <button id="portalBtn" class="group relative inline-flex items-center stify-center px-8 py-5 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-blue-600 text-white font-orbitron font-bold text-lg tracking-wider spidey-glow-red transition-all duration-300 transform hover:-translate-y-1.5 hover:scale-105 active:scale-95 cursor-pointer">
+                    <span class="absolute inset-0 w-full h-full rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <i class="fa-solid fa-spider mr-3 text-2xl spider-pulse text-white"></i>
+                    <span id="btnText">MASUK KE PROJEK SAYA </span>
+                    <i class="fa-solid fa-arrow-right ml-3 transform group-hover:translate-x-2 transition-transform"></i>
+                </button>
+            </div>
+
+            
+            <div class="mt-8 text-xs text-gray-400 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-shield-halved text-blue-400"></i>
+                <span>Gerakkan kursor untuk memicu reaksi jaring interaktif secara real-time.</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="content-layer w-full py-6 text-center text-xs text-gray-500 border-t border-gray-900">
+        <p>&copy; WEB CIPTAAN KELOMPOK 4</p>
+    </footer>
+
+    <script>
+        
+        const canvas = document.getElementById('webCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, active: false };
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            mouse.active = true;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.active = false;
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+                mouse.active = true;
+            }
+        });
+
+        window.addEventListener('touchend', () => {
+            mouse.active = false;
+        });
+
+        
+        class WebParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.radius = Math.random() * 2 + 1;
+                this.color = Math.random() > 0.4 ? 'rgba(239, 68, 68, ' : 'rgba(59, 130, 246, ';
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + '0.8)';
+                ctx.fill();
+            }
+        }
+
+    
+        const particleCount = Math.min(window.innerWidth > 768 ? 70 : 35, 100);
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new WebParticle());
+        }
+
+        
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 130) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        let alpha = (1 - (dist / 130)) * 0.25;
+                        ctx.strokeStyle = `rgba(200, 210, 230, ${alpha})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+
+                
+                if (mouse.active && mouse.x !== null) {
+                    let mdx = particles[i].x - mouse.x;
+                    let mdy = particles[i].y - mouse.y;
+                    let mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+                    if (mdist < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        let mAlpha = (1 - (mdist / 160)) * 0.6;
+                        ctx.strokeStyle = `rgba(239, 68, 68, ${mAlpha})`;
+                        ctx.lineWidth = 1.2;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        
+        const portalBtn = document.getElementById('portalBtn');
+        const btnText = document.getElementById('btnText');
+
+        portalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            
+            btnText.innerHTML = "MEMASUKI PROJEK...";
+            portalBtn.classList.add('animate-pulse', 'scale-110');
+
+            
+            for(let k = 0; k < 25; k++) {
+                let p = new WebParticle();
+                p.x = e.clientX;
+                p.y = e.clientY;
+                p.vx = (Math.random() - 0.5) * 8;
+                p.vy = (Math.random() - 0.5) * 8;
+                particles.push(p);
+            }
+
+            setTimeout(() => {
+                
+                window.location.href = "index1.html";
+            }, 1000);
+        });
+    </script>
+</body>
+</html>ml>
